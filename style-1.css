@@ -1,0 +1,39 @@
+/* vim:set syn=css sts=4 sw=4 et wm=0 */
+
+*
+{
+    text-decoration: none
+}
+
+body
+{
+    background-color: #2F4F4F;
+    color: #F0F8FF;
+}
+
+p.class-header-proj-name
+{
+    font-size: 150%;
+}
+
+p.class-proj-name
+{
+    font-size: 125%;
+}
+
+section.class-section-proj
+{
+    margin-left: 2em;
+}
+
+p.class-proj-desc
+{
+    margin-left: 2em;
+}
+
+a
+{
+    color: #00DDDD;
+}
+
+a:hover { text-decoration: underline; }
