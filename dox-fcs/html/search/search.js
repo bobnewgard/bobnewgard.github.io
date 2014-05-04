@@ -10,10 +10,9 @@ var indexSectionsWithContent =
   0: "_abcdefghilmnoprstuvz~",
   1: "cdfpt",
   2: "pt",
-  3: "fprstu",
+  3: "dfpstu",
   4: "_acdgirst~",
-  5: "_bcdefhilmnoprstuvz",
-  6: "r"
+  5: "_bcdefhilmnoprstuvz"
 };
 
 var indexSectionNames =
@@ -23,8 +22,7 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "variables",
-  6: "pages"
+  5: "variables"
 };
 
 function convertToId(search)

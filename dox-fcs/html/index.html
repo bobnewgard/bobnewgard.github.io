@@ -45,7 +45,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -87,7 +86,7 @@ $(document).ready(function(){initNavTree('index.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,154 +100,185 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">fcs Project </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>Introduction</h2>
-<h3>FCS</h3>
-<p>This project and the nomenclature used within are based on IEEE standard 802.3-2008 clause 3.</p>
-<p>IEEE standard 802 documents were obtained via the <a href="http://standards.ieee.org/about/get/">IEEE Get Program</a>.</p>
-<h3>Use Cases</h3>
-<h4>Supported Use Cases</h4>
+<div class="textblock"><h2 class="mp">Introduction</h2>
+<h3 class="mp">FCS</h3>
+<p>This project and the nomenclature used within are based on IEEE standard 802.3-2008 clause 3. </p>
+<p>IEEE standard 802 documents were obtained via the <a href="http://standards.ieee.org/about/get/">IEEE Get Program</a>. </p>
+<h3 class="mp">Use Cases</h3>
+<h4 class="mp">Supported Use Cases</h4>
 <ul>
-<li>Reference implementation of IEEE 802.3 FCS functions for various datapath widths</li>
-<li>Validation of FCS functions</li>
-<li>Demonstration of FCS for a 512-bit datapath with varying packet lengths</li>
+<li>
+Reference implementation of IEEE 802.3 FCS functions for various datapath widths </li>
+<li>
+Validation of FCS functions </li>
+<li>
+Demonstration of FCS for a 512-bit datapath with varying packet lengths </li>
 </ul>
-<h4>Unsupported Use Cases</h4>
+<h4 class="mp">Unsupported Use Cases</h4>
 <ul>
-<li>Invalid data between start of frame (SOF) and end of frame (EOF) indications is not supported</li>
+<li>
+Invalid data between start of frame (SOF) and end of frame (EOF) indications </li>
 </ul>
-<h3>FCS Calculation</h3>
-<p>The FCS calculation proceeds by first calculating the FCS intermediate value using an LFSR then bit-reversing the result to get the final value.</p>
-<h4>FCS LFSR</h4>
-<p>The FCS intermediate value calculation is shown below implemented in a linear feedback shift register (LFSR).</p>
-<p>The value is accumulated in the R[31:0] registers from data fed LSB-first into the LFSR.</p>
-<p>This LSB-first protocol matches the requirement of 802.3 clause 3 for how non-FCS bits are placed on the wire.</p>
+<h3 class="mp">FCS Calculation</h3>
+<p>The FCS calculation proceeds by first calculating the FCS intermediate value using an LFSR then bit-reversing the result to get the final value. </p>
+<h4 class="mp">FCS LFSR</h4>
+<p>The FCS intermediate value calculation is shown below implemented in a linear feedback shift register (LFSR). </p>
+<p>The value is accumulated in the R[31:0] registers from data fed LSB-first into the LFSR. </p>
+<p>This LSB-first protocol matches the requirement of 802.3 clause 3 for how non-FCS bits are placed on the wire. </p>
 <div class="image">
 <img src="fcs-1.svg"  alt="1-bit FCS, image/svg+xml"/>
 </div>
-<h4>FCS Bit-Reverse</h4>
-<p>The accumulated R[31:0] value is inverted according to the algorithm in 802.3 clause 3.2.9 and bit-reversed per byte to support transmission of bit 31 first.</p>
+<h4 class="mp">FCS Bit-Reverse</h4>
+<p>The accumulated R[31:0] value is inverted according to the algorithm in 802.3 clause 3.2.9 and bit-reversed per byte to support transmission of bit 31 first. </p>
 <div class="image">
 <img src="fcs-brev.svg"  alt="FCS bit reversal, image/svg+xml"/>
 </div>
-<h3>FCS Functions</h3>
-<p>FCS Functions implemented as part of this project cover datapath widths of 1, 8, 16, 32, 64, 128, 256 and 512 bits. The 1-bit function may be useful only for demonstration purposes, but the other functions could be useful in real applications.</p>
-<h3>FCS Residue</h3>
-<p>The residue for this FCS implementation is 0xC704DD7B.</p>
-<h3>Test Benches</h3>
-<p>Test benches implemented as part of this project are used to validate FCS functions, individually or in groups.</p>
-<h3>SystemC</h3>
-<p>The test benches use the <a href="http://www.accellera.org/home/">Accellera</a> implementation of the SystemC classes to provide a simulation kernel and the basis of the driver, checker and utility classes within test benches.</p>
-<p>The path to the SystemC installation is set in the makefiles using the make variable SYSC_DIR.</p>
-<h3>Verilator</h3>
-<p>The verilog units under test (UUTs) are compiled into SystemC classes using <a href="http://www.veripool.org/wiki/verilator">Verilator</a>.</p>
+<h3 class="mp">FCS Functions</h3>
+<p>FCS Functions implemented as part of this project cover datapath widths of 1, 8, 16, 32, 64, 128, 256 and 512 bits. The 1-bit function may be useful only for demonstration purposes, but the other functions could be useful in real applications. </p>
+<h3 class="mp">FCS Residue</h3>
+<p>The residue for this FCS implementation is 0xC704DD7B. </p>
+<h3 class="mp">Test Benches</h3>
+<p>Test benches implemented as part of this project are used to validate FCS functions, individually or in groups. </p>
+<h3 class="mp">SystemC</h3>
+<p>The test benches use the <a href="http://www.accellera.org/home/">Accellera</a> implementation of the SystemC classes to provide a simulation kernel and the basis of the driver, checker and utility classes within test benches. </p>
+<p>The path to the SystemC installation is set in the makefiles using the make variable SYSC_DIR. </p>
+<h3 class="mp">Verilator</h3>
+<p>The verilog units under test (UUTs) are compiled into SystemC classes using <a href="http://www.veripool.org/wiki/verilator">Verilator</a>. </p>
 <p>The verilator environment is wrapped around the verilator executable using the "env-veripool" wrapper script such that the command </p>
-<pre class="fragment">    env-veripool verilator --version
-</pre><p>returns the verilator version and </p>
-<pre class="fragment">    env-veripool
-</pre><p>returns a listing of the verilator environment.</p>
-<p>The paths to the Verilator and SystemC installation directories are set in the script using the variables VERIPOOL_DIR and SYSTEMC_DIR, respectively.</p>
-<h2>Test Benches</h2>
-<p>The test benches drive a verilog unit under test and verify that the UUT outputs are correct.</p>
-<p>The verified outputs are FCS (the FCS value calculated over destination address, source address, length/type, MAC client data and pad) and residue (the FCS value calculated over the entire frame, including FCS).</p>
-<p>The test bench name indicates the width in bits of the implemented datapath.</p>
-<h3>Test Bench List</h3>
+<div class="mp-pre"><pre class="mp">env-veripool verilator --version</pre></div><p> returns the verilator version and </p>
+<div class="mp-pre"><pre class="mp">env-veripool</pre></div><p> returns a listing of the verilator environment. </p>
+<p>The paths to the Verilator and SystemC installation directories are set in the script using the variables VERIPOOL_DIR and SYSTEMC_DIR, respectively. </p>
+<h2 class="mp">Test Benches</h2>
+<p>The test benches drive a verilog unit under test and verify that the UUT outputs are correct. </p>
+<p>The verified outputs are FCS (the FCS value calculated over destination address, source address, length/type, MAC client data and pad) and residue (the FCS value calculated over the entire frame, including FCS). </p>
+<p>The test bench name indicates the width in bits of the implemented datapath. </p>
+<h3 class="mp">Test Bench List</h3>
 <ul>
-<li><a class="el" href="namespacetb__1.html">tb_1</a></li>
-<li><a class="el" href="namespacetb__8.html">tb_8</a></li>
-<li><a class="el" href="namespacetb__16.html">tb_16</a></li>
-<li><a class="el" href="namespacetb__32.html">tb_32</a></li>
-<li><a class="el" href="namespacetb__512.html">tb_512</a></li>
+<li>
+<a class="el" href="namespacetb__1.html">tb_1</a> </li>
+<li>
+<a class="el" href="namespacetb__8.html">tb_8</a> </li>
+<li>
+<a class="el" href="namespacetb__16.html">tb_16</a> </li>
+<li>
+<a class="el" href="namespacetb__32.html">tb_32</a> </li>
+<li>
+<a class="el" href="namespacetb__512.html">tb_512</a> </li>
 </ul>
-<h3>Test Bench <a class="el" href="namespacetb__1.html">tb_1</a></h3>
-<p>Demonstrates serialization of 8-bit data into a 1-bit FCS function.</p>
-<h3>Test Bench <a class="el" href="namespacetb__512.html">tb_512</a></h3>
-<p>Demonstrates how bytes from a wide datapath are fed into a series of FCS functions to obtain a final FCS. The core of the UUT FCS implementation is shown in the block diagram below. Note that it is implemented as a pipeline where all registers have a common clock.</p>
-<p>Frames are delimited by SOF and EOF. Datapath modulo is indicated by mod[5:0]. When mod[5:0] is zero, all 64 bytes of dat[511:0] are valid. Other mod[5:0] values directly indicate the number of valid bytes in dat[511:0]. For arriving data, valid bytes are always in the MSBs. Note that the datapath maintains this by shifting valid bytes to the MSB in the later pipeline stages.</p>
-<p>In the input and first stages, the EOF and mod[5:0] values are modified to remove the FCS from the incoming frame. In subsequent stages, data is applied to the inputs of the individual FCS blocks based on the value of mod at that stage.</p>
+<h3 class="mp">Test Bench <a class="el" href="namespacetb__1.html">tb_1</a></h3>
+<p>Demonstrates serialization of 8-bit data into a 1-bit FCS function. </p>
+<h3 class="mp">Test Bench <a class="el" href="namespacetb__512.html">tb_512</a></h3>
+<p>Demonstrates how bytes from a wide datapath are fed into a series of FCS functions to obtain a final FCS. The core of the UUT FCS implementation is shown in the block diagram below. Note that it is implemented as a pipeline where all registers have a common clock. </p>
+<p>Frames are delimited by SOF and EOF. Datapath modulo is indicated by mod[5:0]. When mod[5:0] is zero, all 64 bytes of dat[511:0] are valid. Other mod[5:0] values directly indicate the number of valid bytes in dat[511:0]. For arriving data, valid bytes are always in the MSBs. Note that the datapath maintains this by shifting valid bytes to the MSB in the later pipeline stages. </p>
+<p>In the input and first stages, the EOF and mod[5:0] values are modified to remove the FCS from the incoming frame. In subsequent stages, data is applied to the inputs of the individual FCS blocks based on the value of mod at that stage. </p>
 <div class="image">
 <img src="fcs-512.svg"  alt="512-bit FCS, image/svg+xml"/>
 </div>
-<h2>Verilog Files</h2>
-<h3>Verilog File List</h3>
+<h2 class="mp">Verilog Files</h2>
+<h3 class="mp">Verilog File List</h3>
 <ul>
-<li>FCS functions<ul>
-<li><a class="el" href="fcs32__1_8v.html" title="FCS function for a 1-bit datapath. ">fcs32_1.v</a></li>
-<li><a class="el" href="fcs32__128_8v.html" title="FCS functions for a 128-bit datapath. ">fcs32_128.v</a></li>
-<li><a class="el" href="fcs32__16_8v.html" title="FCS functions for a 16-bit datapath. ">fcs32_16.v</a></li>
-<li><a class="el" href="fcs32__256_8v.html" title="FCS functions for a 256-bit datapath. ">fcs32_256.v</a></li>
-<li><a class="el" href="fcs32__32_8v.html" title="FCS functions for a 32-bit datapath. ">fcs32_32.v</a></li>
-<li><a class="el" href="fcs32__512_8v.html" title="FCS functions for a 512-bit datapath. ">fcs32_512.v</a></li>
-<li><a class="el" href="fcs32__64_8v.html" title="FCS functions for a 64-bit datapath. ">fcs32_64.v</a></li>
-<li><a class="el" href="fcs32__8_8v.html" title="FCS function for an 8-bit datapath. ">fcs32_8.v</a></li>
-<li><a class="el" href="fcs32__brev_8v.html">fcs32_brev.v</a></li>
+<li>
+FCS functions <ul>
+<li>
+<a class="el" href="fcs32__1_8v.html" title="FCS function for a 1-bit datapath. ">fcs32_1.v</a> </li>
+<li>
+<a class="el" href="fcs32__8_8v.html" title="FCS function for an 8-bit datapath. ">fcs32_8.v</a> </li>
+<li>
+<a class="el" href="fcs32__16_8v.html" title="FCS functions for a 16-bit datapath. ">fcs32_16.v</a> </li>
+<li>
+<a class="el" href="fcs32__32_8v.html" title="FCS functions for a 32-bit datapath. ">fcs32_32.v</a> </li>
+<li>
+<a class="el" href="fcs32__64_8v.html" title="FCS functions for a 64-bit datapath. ">fcs32_64.v</a> </li>
+<li>
+<a class="el" href="fcs32__128_8v.html" title="FCS functions for a 128-bit datapath. ">fcs32_128.v</a> </li>
+<li>
+<a class="el" href="fcs32__256_8v.html" title="FCS functions for a 256-bit datapath. ">fcs32_256.v</a> </li>
+<li>
+<a class="el" href="fcs32__512_8v.html" title="FCS functions for a 512-bit datapath. ">fcs32_512.v</a> </li>
+<li>
+<a class="el" href="fcs32__brev_8v.html">fcs32_brev.v</a> </li>
 </ul>
 </li>
-<li>UUT implementations<ul>
-<li><a class="el" href="uut__16__top_8v.html">uut_16_top.v</a></li>
-<li><a class="el" href="uut__1__bitp_8v.html">uut_1_bitp.v</a></li>
-<li><a class="el" href="uut__1__bytep_8v.html">uut_1_bytep.v</a></li>
-<li><a class="el" href="uut__1__top_8v.html">uut_1_top.v</a></li>
-<li><a class="el" href="uut__32__top_8v.html">uut_32_top.v</a></li>
-<li><a class="el" href="uut__512__top_8v.html">uut_512_top.v</a></li>
-<li><a class="el" href="uut__8__top_8v.html">uut_8_top.v</a></li>
+<li>
+UUT implementations <ul>
+<li>
+<a class="el" href="uut__1__top_8v.html">uut_1_top.v</a> </li>
+<li>
+<a class="el" href="uut__1__bytep_8v.html">uut_1_bytep.v</a> </li>
+<li>
+<a class="el" href="uut__1__bitp_8v.html">uut_1_bitp.v</a> </li>
+<li>
+<a class="el" href="uut__8__top_8v.html">uut_8_top.v</a> </li>
+<li>
+<a class="el" href="uut__16__top_8v.html">uut_16_top.v</a> </li>
+<li>
+uut_32_top. </li>
+<li>
+uut_512_top. </li>
 </ul>
 </li>
 </ul>
-<h3>Verilog Files and Doxygen</h3>
-<p>Note that verilog file documentation consists only of per-file documentation written by hand and variable listings generated by doxygen.</p>
-<p>This is the best that can currently (doxygen 1.8) be done for verilog files within the Doxygen framework.</p>
-<h2>Validated Environments</h2>
+<h3 class="mp">Verilog Files and Doxygen</h3>
+<p>Note that verilog file documentation consists only of per-file documentation written by hand and variable listings generated by doxygen. </p>
+<p>The Doxygen platform may be modified to support Verilog by patching the Doxygen source or by specifying a filter script specifically for Verilog files. Searches for "doxygen verilog" point to resources for doing this. </p>
+<h2 class="mp"><a class="anchor" id="deps"></a>Dependencies </h2>
+<h3 class="mp">Validated Environments</h3>
 <table class="doxtable">
 <tr>
 <th>Linux </th><th>libc </th><th>gcc </th><th>SystemC </th><th>Verilator </th><th>make </th><th>bash </th><th>Python </th><th>Scapy  </th></tr>
 <tr>
-<td>Debian 3.2.0-4-amd64 </td><td>2.13 </td><td>4.7.2 </td><td>2.3.0 </td><td>3.847 </td><td>3.81 </td><td>4.2.37 </td><td>2.7.3 </td><td>2.2.0 </td></tr>
+<td>Debian 3.2.0-4-amd64 </td><td>2.13 </td><td>4.7.2 </td><td>2.3.0 </td><td>3.847 </td><td>3.81 </td><td>4.2.37 </td><td>2.7.3 </td><td>2.2.0  </td></tr>
 </table>
-<h2>Other Dependencies</h2>
-<p>Dependencies beyond those listed above under the Validated Environments heading are the projects</p>
+<h3 class="mp">Other Dependencies</h3>
+<p>Dependencies beyond those listed above under the Validated Environments heading are the projects </p>
 <ul>
-<li><a href="https://github.com/bobnewgard/SyscMake">SyscMake</a></li>
-<li><a href="https://github.com/bobnewgard/SyscMsg">SyscMsg</a></li>
-<li><a href="https://github.com/bobnewgard/SyscJson">SyscJson</a></li>
-<li><a href="https://github.com/bobnewgard/SyscDrv">SyscDrv</a></li>
-<li><a href="https://github.com/bobnewgard/SyscClk">SyscClk</a></li>
-<li><a href="https://github.com/bobnewgard/SyscFCBus">SyscFCBus</a></li>
+<li>
+<a href="https://github.com/bobnewgard/SyscMake">SyscMake</a> </li>
+<li>
+<a href="https://github.com/bobnewgard/SyscMsg">SyscMsg</a> </li>
+<li>
+<a href="https://github.com/bobnewgard/SyscJson">SyscJson</a> </li>
+<li>
+<a href="https://github.com/bobnewgard/SyscDrv">SyscDrv</a> </li>
+<li>
+<a href="https://github.com/bobnewgard/SyscClk">SyscClk</a> </li>
+<li>
+<a href="https://github.com/bobnewgard/SyscFCBus">SyscFCBus</a> </li>
 </ul>
-<p>These projects can be found on github nearby this project.</p>
-<h2>Installation</h2>
-<ol type="1">
-<li>Make sure you have installed the components shown in the "Validated Environments" section<ul>
-<li>Install SystemC from source, since it is unlikely to be packaged</li>
-<li>Install Verilator from source to get the latest version</li>
+<h2 class="mp"><a class="anchor" id="inst"></a>Installation </h2>
+<ol>
+<li>
+Make sure you have installed the components shown in the "Validated Environments" section <ul>
+<li>
+Install SystemC from source, since it is unlikely to be packaged </li>
+<li>
+Install Verilator from source to get the latest version </li>
 </ul>
 </li>
-</ol>
-<ol type="1">
-<li>Clone repos listed in "Other Dependencies"<ul>
-<li>Clone such that fcs and the Sysc* repos are in the same directory</li>
+<li>
+Clone repos listed in "Other Dependencies" <ul>
+<li>
+Clone such that fcs and the Sysc* repos are in the same directory </li>
 </ul>
 </li>
+<li>
+Modify the path to the SystemC installation, SYSC_DIR, in SyscMake/vars.mk </li>
+<li>
+Modify the path to the SystemC and Veripool installations, SYSTEMC_DIR and VERIPOOL_DIR respectively, in SyscMake/env-veripool  </li>
+<li>
+execute "make" for a list of available targets </li>
 </ol>
-<ol type="1">
-<li>Modify the path to the SystemC installation, SYSC_DIR, in SyscMake/vars.mk</li>
-</ol>
-<ol type="1">
-<li>Modify the path to the SystemC and Veripool installations, SYSTEMC_DIR and VERIPOOL_DIR respectively, in SyscMake/env-veripool</li>
-</ol>
-<ol type="1">
-<li>execute "make" for hints about available targets</li>
-</ol>
-<h2>Licenses</h2>
-<h3>License for Code</h3>
-<p>The code in this (fcs) project is licensed under the <a href="http://www.gnu.org/licenses/">GPLv3</a></p>
-<h3>License for This Project Summary</h3>
+<h2 class="mp"><a class="anchor" id="lics"></a>Licenses </h2>
+<h3 class="mp">License for Code</h3>
+<p>The code in this (fcs) project is licensed under the <a href="http://www.gnu.org/licenses/">GPLv3</a> </p>
+<h3 class="mp">License for This Project Summary</h3>
 <p>This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat May 3 2014 13:06:15 for fcs by
+    <li class="footer">Generated on Sun May 4 2014 09:15:41 for fcs by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
